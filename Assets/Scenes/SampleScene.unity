@@ -213,7 +213,7 @@ Transform:
   m_GameObject: {fileID: 1764767}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.21, y: 0, z: 0}
-  m_LocalScale: {x: 1.2994151, y: 1.2994151, z: 1.2994151}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 2034486552}
   - {fileID: 1939548799}
@@ -540,7 +540,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalSpeed: 0.8
   mainCamera: {fileID: 963194227}
-  _selectedGO: {fileID: 0}
+  hittedGO: {fileID: 0}
+  selectedGO: {fileID: 0}
+  _isSelected: 0
+  _gOSelected: 0
 --- !u!4 &306719821
 Transform:
   m_ObjectHideFlags: 0
@@ -892,7 +895,7 @@ Transform:
   m_GameObject: {fileID: 712869262}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2994151, y: 1.2994151, z: 1.2994151}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 235244122}
   - {fileID: 1423113774}
@@ -1254,7 +1257,7 @@ Transform:
   m_GameObject: {fileID: 1360666774}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.3300002, y: 0, z: 0}
-  m_LocalScale: {x: 1.2994151, y: 1.2994151, z: 1.2994151}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 889999869}
   - {fileID: 767403331}
@@ -1385,7 +1388,7 @@ Transform:
   m_GameObject: {fileID: 1766927268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.6800001, y: 0, z: 0}
-  m_LocalScale: {x: 1.2994151, y: 1.2994151, z: 1.2994151}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 1218158891}
   - {fileID: 244687304}

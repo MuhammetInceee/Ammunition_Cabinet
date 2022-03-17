@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
+using MuhammetInce.HelperUtils;
 
 public class CaseContainer : MonoBehaviour
 {
+    [SerializeField] private float bigScaleFactor;
     [SerializeField] private float horizontalSpeed;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject hittedGO;
@@ -14,11 +15,12 @@ public class CaseContainer : MonoBehaviour
     [SerializeField] private bool _isSelected;
     [SerializeField] private bool _gOSelected;
 
+    // Constructions
+    private float DefaultScaleFactor => transform.localScale.x;
     private Ray Ray => mainCamera.ScreenPointToRay(Input.mousePosition);
-
     private Touch Touch => Input.GetTouch(0);
-    
-    private Vector3 Pos 
+
+    private Vector3 Pos
     {
         get => transform.position;
         set => transform.position = value;
@@ -37,14 +39,14 @@ public class CaseContainer : MonoBehaviour
         {
             if (Touch.phase == TouchPhase.Moved)
             {
-                IgnoreRayAsync(150);
+                Helpers.IgnoreRayLayerAsync(gameObject,150);
                 Pos = new Vector3(transform.position.x + Touch.deltaPosition.x * (horizontalSpeed * Time.deltaTime),
                     Pos.y, Pos.z);
             }
-            
+
             if (Touch.phase == TouchPhase.Ended)
             {
-                DefaultAsync(150);
+                Helpers.DefaultLayerAsync(gameObject,150);
             }
         }
     }
@@ -63,38 +65,19 @@ public class CaseContainer : MonoBehaviour
     private void SelectCaseRay()
     {
         if (gameObject.layer != 0) return;
-        
+
         if (Physics.Raycast(Ray, out var hit))
         {
             hittedGO = hit.collider.gameObject;
             _isSelected = true;
 
-            if (_gOSelected) return;
-            selectedGO = hittedGO;
-            _gOSelected = true;
-            
-            CaseBigger(selectedGO);
+
+            if (!_gOSelected)
+            {
+                selectedGO = hittedGO;
+                _gOSelected = true;
+                Helpers.CaseBigger(selectedGO, bigScaleFactor, 0.5f);
+            }
         }
-    }
-
-    private void CaseBigger(GameObject obj)
-    {
-        //TODO
-        //DoTween Kur
-        //Selected Objeyi Büyüt
-    }
-    
-
-    //async Func
-    private async void DefaultAsync(int milliseconds)
-    {
-        await Task.Delay(milliseconds);
-        gameObject.layer = 0;
-    }
-
-    private async void IgnoreRayAsync(int milliseconds)
-    {
-        await Task.Delay(milliseconds);
-        gameObject.layer = 2;
     }
 }
