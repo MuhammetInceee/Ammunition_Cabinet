@@ -80,7 +80,6 @@ public class CaseContainer : MonoBehaviour
     private void CaseBigger(GameObject obj)
     {
         //TODO
-        //Projeyi SourceTree ye al
         //DoTween Kur
         //Selected Objeyi Büyüt
     }

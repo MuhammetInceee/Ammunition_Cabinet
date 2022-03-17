@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MuhammetInce.DesignPattern.Singleton
-{
+
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         private static T _instance;
@@ -29,4 +28,3 @@ namespace MuhammetInce.DesignPattern.Singleton
             if (_instance == null) Destroy(this.gameObject);
         }
     }
-}
