@@ -80,4 +80,16 @@ public class CaseContainer : MonoBehaviour
             }
         }
     }
+
+    private void DeSelectCaseRay()
+    {
+        if(gameObject.layer != 0) return;
+        
+        if (Physics.Raycast(Ray, out var hit))
+        {
+            if(!_gOSelected) return;
+            
+            if(hit.collider.gameObject == selectedGO) Helpers.CaseSmaller(selectedGO, DefaultScaleFactor, 0.5f);
+        }
+    }
 }
