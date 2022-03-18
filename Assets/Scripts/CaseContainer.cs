@@ -40,7 +40,6 @@ public class CaseContainer : MonoBehaviour
         else
             DeSelectCase();
     }
-
     private void CasesMovement()
     {
         if (Input.touchCount <= 0) return;
@@ -72,7 +71,6 @@ public class CaseContainer : MonoBehaviour
             
         }
     }
-
     private void DeSelectCase()
     {
         if(selectActive) return;
@@ -85,7 +83,6 @@ public class CaseContainer : MonoBehaviour
             
         }
     }
-
     private void SelectCaseRay()
     {
         if (gameObject.layer != 0) return;
