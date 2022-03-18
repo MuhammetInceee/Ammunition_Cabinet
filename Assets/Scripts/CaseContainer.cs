@@ -6,20 +6,25 @@ using MuhammetInce.HelperUtils;
 
 public class CaseContainer : MonoBehaviour
 {
+    [Header("Floats")]
     [SerializeField] private float bigScaleFactor;
+    [SerializeField] private float defaultScaleFactor;
     [SerializeField] private float horizontalSpeed;
+    
+    [Header("Objects")]
+    [Space]
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject hittedGO;
     [SerializeField] private GameObject selectedGO;
-
-    [SerializeField] private bool _isSelected;
+    
+    [Header("Bools")]
+    [Space]
     [SerializeField] private bool _gOSelected;
+    [SerializeField] private bool selectActive = true;
 
     // Constructions
-    private float DefaultScaleFactor => transform.localScale.x;
     private Ray Ray => mainCamera.ScreenPointToRay(Input.mousePosition);
     private Touch Touch => Input.GetTouch(0);
-
     private Vector3 Pos
     {
         get => transform.position;
@@ -29,36 +34,55 @@ public class CaseContainer : MonoBehaviour
     private void Update()
     {
         CasesMovement();
-        SelectCase();
+        
+        if(selectActive)
+            SelectCase();
+        else
+            DeSelectCase();
     }
 
     private void CasesMovement()
     {
         if (Input.touchCount <= 0) return;
-        if (!_isSelected)
+        if (!_gOSelected)
         {
             if (Touch.phase == TouchPhase.Moved)
             {
-                Helpers.IgnoreRayLayerAsync(gameObject,150);
+                HelperUtils.IgnoreRayLayerAsync(gameObject,150);
                 Pos = new Vector3(transform.position.x + Touch.deltaPosition.x * (horizontalSpeed * Time.deltaTime),
                     Pos.y, Pos.z);
             }
 
             if (Touch.phase == TouchPhase.Ended)
             {
-                Helpers.DefaultLayerAsync(gameObject,150);
+                HelperUtils.DefaultLayerAsync(gameObject,150);
             }
         }
     }
 
     private void SelectCase()
     {
+        if(!selectActive) return;
         if (Input.touchCount <= 0) return;
 
         if (Touch.phase == TouchPhase.Ended)
         {
             print("clicked");
             SelectCaseRay();
+            
+        }
+    }
+
+    private void DeSelectCase()
+    {
+        if(selectActive) return;
+        if (Input.touchCount <= 0) return;
+
+        if (Touch.phase == TouchPhase.Ended)
+        {
+            print("clicked");
+            DeSelectCaseRay();
+            
         }
     }
 
@@ -68,16 +92,14 @@ public class CaseContainer : MonoBehaviour
 
         if (Physics.Raycast(Ray, out var hit))
         {
+            if (_gOSelected) return;
+            
             hittedGO = hit.collider.gameObject;
-            _isSelected = true;
-
-
-            if (!_gOSelected)
-            {
-                selectedGO = hittedGO;
-                _gOSelected = true;
-                Helpers.CaseBigger(selectedGO, bigScaleFactor, 0.5f);
-            }
+            selectedGO = hittedGO;
+            HelperUtils.CaseBigger(selectedGO, bigScaleFactor, 0.5f);
+            _gOSelected = true;
+            selectActive = false;
+            
         }
     }
 
@@ -87,9 +109,15 @@ public class CaseContainer : MonoBehaviour
         
         if (Physics.Raycast(Ray, out var hit))
         {
-            if(!_gOSelected) return;
-            
-            if(hit.collider.gameObject == selectedGO) Helpers.CaseSmaller(selectedGO, DefaultScaleFactor, 0.5f);
+            if(_gOSelected)
+            {
+                if (hit.collider.gameObject == selectedGO)
+                {
+                    HelperUtils.CaseSmaller(selectedGO, defaultScaleFactor, 0.5f);
+                    _gOSelected = false;
+                    selectActive = true;
+                }
+            }
         }
     }
 }

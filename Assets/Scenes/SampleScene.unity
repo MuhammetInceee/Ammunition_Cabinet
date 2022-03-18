@@ -473,12 +473,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bigScaleFactor: 2.5
+  defaultScaleFactor: 1.3
   horizontalSpeed: 0.8
   mainCamera: {fileID: 963194227}
   hittedGO: {fileID: 0}
   selectedGO: {fileID: 0}
-  _isSelected: 0
   _gOSelected: 0
+  selectActive: 1
 --- !u!4 &306719821
 Transform:
   m_ObjectHideFlags: 0
