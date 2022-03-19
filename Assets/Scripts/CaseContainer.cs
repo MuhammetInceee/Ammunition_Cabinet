@@ -75,7 +75,7 @@ public class CaseContainer : MonoBehaviour
     {
         if(selectActive) return;
         if (Input.touchCount <= 0) return;
-
+        
         if (Touch.phase == TouchPhase.Ended)
         {
             print("clicked");
@@ -96,7 +96,6 @@ public class CaseContainer : MonoBehaviour
             HelperUtils.CaseBigger(selectedGO, bigScaleFactor, 0.5f);
             _gOSelected = true;
             selectActive = false;
-            
         }
     }
 
