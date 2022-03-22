@@ -8,8 +8,6 @@ using UnityEngine.Serialization;
 
 public class PanelAndSelectManager : MonoBehaviour
 {
-
-    
     private RaycastHit hit;
     
     [Header("Layers")]
@@ -63,8 +61,9 @@ public class PanelAndSelectManager : MonoBehaviour
             if (Touch.phase == TouchPhase.Moved)
             {
                 HelperUtils.IgnoreRayLayerAsync(gameObject,150);
-                Pos = new Vector3(transform.position.x + Touch.deltaPosition.x * (horizontalSpeed * Time.deltaTime),
+                Pos = new Vector3(Pos.x + Touch.deltaPosition.x * (horizontalSpeed * Time.deltaTime),
                     Pos.y, Pos.z);
+                
             }
 
             if (Touch.phase == TouchPhase.Ended)
@@ -101,31 +100,34 @@ public class PanelAndSelectManager : MonoBehaviour
     {
         if (gameObject.layer != defaultLayer) return;
 
-        if (Physics.Raycast(Ray, out hit))
-        {
-            if (gOSelected) return;
-            selectedGo = hit.collider.gameObject;
-            HelperUtils.CaseBigger(selectedGo, bigScaleFactor, 0.5f);
-            gOSelected = true;
-            canSelect = false;
-        }
+        SendRay();
+        
+        if (gOSelected) return;
+        selectedGo = hit.collider.gameObject;
+        HelperUtils.CaseBigger(selectedGo, bigScaleFactor, 0.5f);
+        gOSelected = true;
+        canSelect = false;
     }
 
     private void DeSelectCaseRay()
     {
         if(gameObject.layer != defaultLayer) return;
+
+        SendRay();
         
-        if (Physics.Raycast(Ray, out hit))
-        {
-            if (!gOSelected) return;
+        if (!gOSelected) return;
             
-            if (hit.collider.gameObject != selectedGo) return;
+        if (hit.collider.gameObject != selectedGo) return;
             
-            HelperUtils.CaseSmaller(selectedGo, defaultScaleFactor, 0.5f);
-            selectedGo = null;
-            gOSelected = false;
-            canSelect = true;
-        }
+        HelperUtils.CaseSmaller(selectedGo, defaultScaleFactor, 0.5f);
+        selectedGo = null;
+        gOSelected = false;
+        canSelect = true;
+    }
+
+    public void SendRay()
+    {
+        if (!Physics.Raycast(Ray, out hit)) return;
     }
 }
 
