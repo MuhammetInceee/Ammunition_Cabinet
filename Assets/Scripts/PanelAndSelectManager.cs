@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using MuhammetInce.HelperUtils;
 
@@ -8,7 +9,9 @@ public class PanelAndSelectManager : MonoBehaviour
     [Header("Layers")]
     [SerializeField] private int defaultLayer = 0;
 
-
+    [Header("Integers"), Space]
+    public int targetLayer;
+    
     [Header("Floats"), Space] 
     [SerializeField] private float bigScaleFactor = 2.5f;
     [SerializeField] private float defaultScaleFactor = 1.3f;
@@ -22,14 +25,11 @@ public class PanelAndSelectManager : MonoBehaviour
     [Header("Booleans"), Space] 
     public bool gOSelected;
     [SerializeField] private bool canSelect = true;
-
-
-    // Actions
+    
+    // Properties
     public Ray Ray => mainCamera.ScreenPointToRay(Input.mousePosition);
     public Touch Touch => Input.GetTouch(0);
     private bool CanPlayArea => Input.mousePosition.y < lowerPanelControlHeight;
-
-    // Constructions
     private Vector3 Pos
     {
         get => transform.position;
@@ -53,6 +53,7 @@ public class PanelAndSelectManager : MonoBehaviour
 
     private void UpdateInit()
     {
+
         if (!CanPlayArea) return;
 
         CasesMovement();
@@ -89,6 +90,7 @@ public class PanelAndSelectManager : MonoBehaviour
         if (Touch.phase == TouchPhase.Ended)
         {
             SelectCaseRay();
+            if (selectedGo !=null && selectedGo.transform.childCount == 0) DragAndDropManager.IsChildNull = true;
         }
     }
 
@@ -100,6 +102,7 @@ public class PanelAndSelectManager : MonoBehaviour
         if (Touch.phase == TouchPhase.Ended)
         {
             DeSelectCaseRay();
+            DragAndDropManager.IsChildNull = false;
         }
     }
 
@@ -111,10 +114,14 @@ public class PanelAndSelectManager : MonoBehaviour
 
         if (gOSelected) return;
         
+        if(hit.transform.parent.gameObject.name != "CaseContainer") return;
+        
         selectedGo = hit.collider.gameObject;
         HelperUtils.CaseBigger(selectedGo, bigScaleFactor, 0.5f);
         gOSelected = true;
         canSelect = false;
+        if(selectedGo == null) return;
+        LayerChecker();
 
     }
 
@@ -132,9 +139,31 @@ public class PanelAndSelectManager : MonoBehaviour
         selectedGo = null;
         gOSelected = false;
         canSelect = true;
+        targetLayer = 0;
+    }
+
+    private void LayerChecker()
+    {
+        if(selectedGo.transform.childCount == 0) return;
+            
+        switch (selectedGo.transform.GetChild(selectedGo.transform.childCount - 1).tag)
+        {
+            // weapon, bullet, kevlar, helmet, bomb
+            case "Weapon":
+                targetLayer = 7;
+                break;
+            case "Bullet":
+                targetLayer = 8;
+                break;
+            case "Kevlar":
+                targetLayer = 9;
+                break;
+            case "Helmet":
+                targetLayer = 10;
+                break;
+            case "Bomb":
+                targetLayer = 11;
+                break;
+        }
     }
 }
-
-// TODO
-// StateManager yaz
-// Stateleri ata
