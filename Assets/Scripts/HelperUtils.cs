@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Rendering.Universal;
 
 namespace MuhammetInce.HelperUtils
 {
@@ -29,5 +30,6 @@ namespace MuhammetInce.HelperUtils
             var defaultScale = new Vector3(defaultScaleFactor, defaultScaleFactor, defaultScaleFactor);
             obj.transform.DOScale(defaultScale, secondDuration);
         }
+        
     }
 }
