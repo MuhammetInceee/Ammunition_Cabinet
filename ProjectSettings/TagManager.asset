@@ -17,11 +17,11 @@ TagManager:
   - Water
   - UI
   - Bullet
-  - 
-  - 
-  - 
-  - 
-  - 
+  - WeaponContainer
+  - BulletContainer
+  - KevlarContainer
+  - HelmetContainer
+  - BombContainer
   - 
   - 
   - 
