@@ -1,44 +1,39 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using DG.Tweening;
-using DG.Tweening.Plugins.Options;
-using MuhammetInce.HelperUtils;
 using UnityEngine;
 using System.Linq;
-using UnityEngine.Serialization;
 
 public class DragAndDropManager : MonoBehaviour
 {
     private RaycastHit hit;
     private Vector3 _heldFirstPos;
     private Vector3 _heldPos;
-    [Space] [Header("PlaceHolder"), Space] public List<GameObject> placeHolder = null;
-
     [SerializeField] private PanelAndSelectManager ps;
-
-    [Header("Floats"), Space] [SerializeField]
-    private float zDepth = 5f;
+    
+    [Space] [Header("PlaceHolder"), Space]
+    public List<GameObject> placeHolder = null;
+    
+    [Header("Floats"), Space]
     private float _yValue;
+    [SerializeField] private float zDepth = 5f;
     [SerializeField] private float movableDistance = 510;
     [SerializeField] private float reachTime = 1f;
 
-    [Header("Objects"), Space] [SerializeField]
-    private Camera mainCamera;
-
+    [Header("Objects"), Space]
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject heldObject;
     [SerializeField] private GameObject currentHolder;
 
-    [Header("Booleans"), Space] public static bool IsChildNull;
+    [Header("Booleans"), Space]
+    public static bool IsChildNull;
     [SerializeField] private bool isChildNullIns;
     [SerializeField] private bool dragBegin;
     [SerializeField] private bool isMoving;
     [SerializeField] private bool rightPos;
 
-    [Header("Materials"), Space] [SerializeField]
-    private Material targetHoloMaterial;
-
+    [Header("Materials"), Space]
+    [SerializeField] private Material targetHoloMaterial;
     [SerializeField] private Material targetGreenMaterial;
 
     // Properties
@@ -46,7 +41,6 @@ public class DragAndDropManager : MonoBehaviour
     private Ray Ray => mainCamera.ScreenPointToRay(Input.mousePosition);
     private float InputX => Input.GetTouch(0).position.x;
     private float InputY => Input.GetTouch(0).position.y;
-
     private int TargetLayer
     {
         get => ps.targetLayer;

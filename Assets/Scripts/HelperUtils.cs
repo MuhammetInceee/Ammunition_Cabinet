@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.Rendering.Universal;
 
 namespace MuhammetInce.HelperUtils
 {
