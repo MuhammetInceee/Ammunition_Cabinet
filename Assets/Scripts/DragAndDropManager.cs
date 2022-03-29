@@ -127,6 +127,7 @@ public class DragAndDropManager : MonoBehaviour
 
         if (!Physics.Raycast(Ray, out hit)) return;
 
+        print(hit.collider.gameObject.name);
         rightPos = hit.collider.gameObject == currentHolder;
     }
 
@@ -144,6 +145,9 @@ public class DragAndDropManager : MonoBehaviour
         {
             heldObject.transform.DOMove(_heldFirstPos, 0.5f);
             heldObject.transform.SetParent(ps.selectedGo.transform);
+            currentHolder.SetActive(false);
+            currentHolder = null;
+            
         }
 
         if (ps.selectedGo.transform.childCount == 0) IsChildNull = true;
