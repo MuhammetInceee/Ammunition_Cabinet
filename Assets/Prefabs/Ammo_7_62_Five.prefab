@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5879092763335646363}
   - component: {fileID: 7366024413914846014}
   - component: {fileID: 4746116040691230708}
-  - component: {fileID: 6204837433059425134}
+  - component: {fileID: 1290941611576093264}
   m_Layer: 2
   m_Name: Ammo_7_62_Five
   m_TagString: Bullet
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6547507169770636833}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.8678186, y: 2.1781983, z: 8.588493}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6547507169770636833}
-  m_Mesh: {fileID: -4940813113729890699, guid: ff0d60256b100e149aaa151e4856b768, type: 3}
+  m_Mesh: {fileID: -804839987043002187, guid: ff0d60256b100e149aaa151e4856b768, type: 3}
 --- !u!23 &4746116040691230708
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6127662623007947888, guid: ff0d60256b100e149aaa151e4856b768, type: 3}
+  - {fileID: 2100000, guid: 58ace270d835d564f9bdd2ed9933c940, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6204837433059425134
+--- !u!65 &1290941611576093264
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,5 +93,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.61435115, y: 0.7407818, z: 0.12237258}
-  m_Center: {x: -0.24598926, y: 0.3703909, z: 0.0000000018626451}
+  m_Size: {x: 0.4182766, y: 0.8445661, z: 0.13951707}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -129,6 +129,7 @@ public class DragAndDropManager : MonoBehaviour
 
         print(hit.collider.gameObject.name);
         rightPos = hit.collider.gameObject == currentHolder;
+
     }
 
     private void On_Drop()
@@ -140,6 +141,7 @@ public class DragAndDropManager : MonoBehaviour
         if (hit.collider.CompareTag(heldObject.tag))
         {
             heldObject.transform.DOMove(hit.transform.position, reachTime);
+            //heldObject.transform.DORotate(currentHolder.transform.localScale, reachTime);
         }
         else
         {
@@ -161,8 +163,9 @@ public class DragAndDropManager : MonoBehaviour
         currentHolder = placeHolder
             .Where(a => a.layer == TargetLayer)
             .Where(b => !b.activeInHierarchy)
-            .OrderBy(c => c.name)
-            .FirstOrDefault();
+            //.OrderBy(c => c.name)
+            //.FirstOrDefault();
+            .LastOrDefault();
 
         if (currentHolder is null) return;
 
