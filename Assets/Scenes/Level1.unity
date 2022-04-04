@@ -683,9 +683,11 @@ MonoBehaviour:
   defaultLayer: 0
   targetLayer: 0
   bigScaleFactor: 2
+  selectedGoDuration: 0.5
   defaultScaleFactor: 1
   horizontalSpeed: 0.2
   lowerPanelControlHeight: 500
+  selectedCaseRotateAnge: 50
   selectedGo: {fileID: 0}
   mainCamera: {fileID: 963194227}
   gOSelected: 0
@@ -1402,31 +1404,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056560237793513852, guid: 28f3618ff6a65f4498cab26dcbf121f7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7070798
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 7056560237793513852, guid: 28f3618ff6a65f4498cab26dcbf121f7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0057902965
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7056560237793513852, guid: 28f3618ff6a65f4498cab26dcbf121f7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7070798
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 7056560237793513852, guid: 28f3618ff6a65f4498cab26dcbf121f7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.006530428
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7056560237793513852, guid: 28f3618ff6a65f4498cab26dcbf121f7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.06
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7056560237793513852, guid: 28f3618ff6a65f4498cab26dcbf121f7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 89.999
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7056560237793513852, guid: 28f3618ff6a65f4498cab26dcbf121f7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7684865594442927046, guid: 28f3618ff6a65f4498cab26dcbf121f7, type: 3}
       propertyPath: m_Name
@@ -2850,6 +2852,10 @@ PrefabInstance:
     - target: {fileID: 106231011765293268, guid: 7ceab4495c2174841bdee5e02c50970e, type: 3}
       propertyPath: m_Name
       value: MainCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 106231011765293268, guid: 7ceab4495c2174841bdee5e02c50970e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 106231011765293272, guid: 7ceab4495c2174841bdee5e02c50970e, type: 3}
       propertyPath: m_Pivot.x

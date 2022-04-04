@@ -87,8 +87,8 @@ public class DragAndDropManager : MonoBehaviour
 
         if (Touch.phase == TouchPhase.Moved)
         {
-            // _yValue = Input.mousePosition.y;
-            // if (_yValue <= movableDistance && !isMoving) return;
+            _yValue = Input.mousePosition.y;
+            if (_yValue <= movableDistance && !isMoving) return;
             On_Drag();
             isMoving = true;
         }
@@ -145,10 +145,16 @@ public class DragAndDropManager : MonoBehaviour
         }
         else
         {
-            heldObject.transform.DOMove(_heldFirstPos, 0.5f);
+            // heldObject.transform.DOMove(_heldFirstPos, 0.5f);
+            if (Input.mousePosition.y < 600)
+                heldObject.transform.position = _heldPos;
+            else
+                heldObject.transform.DOMove(_heldFirstPos, 0.5f);
+            
             heldObject.transform.SetParent(ps.selectedGo.transform);
+            if(currentHolder == null) return;
             currentHolder.SetActive(false);
-            currentHolder = null;
+            //currentHolder = null;
             
         }
 
@@ -186,5 +192,6 @@ public class DragAndDropManager : MonoBehaviour
         
         placeHolder.Remove(currentHolder);
         Destroy(currentHolder);
+        currentHolder = null;
     }
 }

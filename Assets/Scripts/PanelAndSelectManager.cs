@@ -1,5 +1,6 @@
 using UnityEngine;
 using MuhammetInce.HelperUtils;
+using UnityEngine.Serialization;
 
 public class PanelAndSelectManager : MonoBehaviour
 {
@@ -12,10 +13,12 @@ public class PanelAndSelectManager : MonoBehaviour
 
     [Header("Floats"), Space] [SerializeField]
     private float bigScaleFactor = 2.5f;
-
+    
+    [SerializeField] private float selectedGoDuration = 0.5f;
     [SerializeField] private float defaultScaleFactor = 1.3f;
     [SerializeField] private float horizontalSpeed = 0.2f;
     [SerializeField] private float lowerPanelControlHeight = 500;
+    [SerializeField] private float selectedCaseRotateAnge;
 
     [Header("Objects"), Space] public GameObject selectedGo;
     [SerializeField] private Camera mainCamera;
@@ -111,7 +114,8 @@ public class PanelAndSelectManager : MonoBehaviour
         if (hit.transform.parent.gameObject.name != "CaseContainer") return;
 
         selectedGo = hit.collider.gameObject;
-        HelperUtils.CaseBigger(selectedGo, bigScaleFactor, 0.5f);
+        HelperUtils.CaseBigger(selectedGo, bigScaleFactor, selectedGoDuration);
+        HelperUtils.CaseRotater(selectedGo,selectedCaseRotateAnge, selectedGoDuration);
         gOSelected = true;
         canSelect = false;
         if (selectedGo == null) return;
@@ -125,7 +129,8 @@ public class PanelAndSelectManager : MonoBehaviour
         if (!gOSelected) return;
         if (hit.collider.gameObject != selectedGo) return;
 
-        HelperUtils.CaseSmaller(selectedGo, defaultScaleFactor, 0.5f);
+        HelperUtils.CaseSmaller(selectedGo, defaultScaleFactor, selectedGoDuration);
+        HelperUtils.DefaultCaseRotater(selectedGo, selectedGoDuration);
         selectedGo = null;
         gOSelected = false;
         canSelect = true;
