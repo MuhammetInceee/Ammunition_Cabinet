@@ -29,6 +29,16 @@ namespace MuhammetInce.HelperUtils
             var defaultScale = new Vector3(defaultScaleFactor, defaultScaleFactor, defaultScaleFactor);
             obj.transform.DOScale(defaultScale, secondDuration);
         }
-        
+
+        public static void CaseRotater(GameObject obj, float rotateFactor, float secondDuration)
+        {
+            var rotateState = new Vector3(0, 90, -rotateFactor);
+            obj.transform.DORotate(rotateState, secondDuration);
+        }
+        public static void DefaultCaseRotater(GameObject obj, float secondDuration)
+        {
+            var rotateState = new Vector3(0, 90, 0);
+            obj.transform.DORotate(rotateState, secondDuration);
+        }
     }
 }
