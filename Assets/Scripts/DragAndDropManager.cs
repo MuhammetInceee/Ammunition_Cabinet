@@ -194,4 +194,9 @@ public class DragAndDropManager : MonoBehaviour
         Destroy(currentHolder);
         currentHolder = null;
     }
+
+    private void CheckHolderScale()
+    {
+
+    }
 }
