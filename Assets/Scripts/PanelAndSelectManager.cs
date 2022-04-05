@@ -6,13 +6,14 @@ public class PanelAndSelectManager : MonoBehaviour
 {
     private RaycastHit hit;
 
-    [Header("Layers"), Space] [SerializeField]
-    private int defaultLayer = 0;
+    [Header("Layers"), Space] 
+    [SerializeField] private int defaultLayer = 0;
 
-    [Header("Integers"), Space] public int targetLayer;
+    [Header("Integers"), Space] 
+    public int targetLayer;
 
-    [Header("Floats"), Space] [SerializeField]
-    private float bigScaleFactor = 2.5f;
+    [Header("Floats"), Space] 
+    [SerializeField] private float bigScaleFactor = 2.5f;
     
     [SerializeField] private float selectedGoDuration = 0.5f;
     [SerializeField] private float defaultScaleFactor = 1.3f;
@@ -20,10 +21,12 @@ public class PanelAndSelectManager : MonoBehaviour
     [SerializeField] private float lowerPanelControlHeight = 500;
     [SerializeField] private float selectedCaseRotateAnge;
 
-    [Header("Objects"), Space] public GameObject selectedGo;
+    [Header("Objects"), Space] 
+    public GameObject selectedGo;
     [SerializeField] private Camera mainCamera;
 
-    [Header("Booleans"), Space] public bool gOSelected;
+    [Header("Booleans"), Space] 
+    public bool gOSelected;
     [SerializeField] private bool canSelect = true;
 
     // Properties
