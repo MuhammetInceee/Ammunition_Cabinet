@@ -88,7 +88,11 @@ public class DragAndDropManager : MonoBehaviour
         if (Touch.phase == TouchPhase.Moved)
         {
             _yValue = Input.mousePosition.y;
-            if (_yValue <= movableDistance && !isMoving) return;
+            if (_yValue <= movableDistance && !isMoving)
+            {
+                //rightPos = false;
+                return;
+            }
             On_Drag();
             isMoving = true;
         }
@@ -126,9 +130,13 @@ public class DragAndDropManager : MonoBehaviour
         heldObject.transform.localPosition = mainCamera.ScreenToWorldPoint(new Vector3(InputX, InputY, zDepth));
 
         if (!Physics.Raycast(Ray, out hit)) return;
+        
+        //rightPos = hit.collider.gameObject == currentHolder;
 
-        print(hit.collider.gameObject.name);
-        rightPos = hit.collider.gameObject == currentHolder;
+        if (hit.collider.gameObject == currentHolder)
+            rightPos = true;
+        else
+            rightPos = false;
 
     }
 
@@ -140,12 +148,16 @@ public class DragAndDropManager : MonoBehaviour
 
         if (hit.collider.CompareTag(heldObject.tag))
         {
+            var rotation = currentHolder.transform.rotation.eulerAngles;
+            Vector3 currenHolderRot = new Vector3(rotation.x,
+                rotation.y, rotation.z);
+            
             heldObject.transform.DOMove(hit.transform.position, reachTime);
-            //heldObject.transform.DORotate(currentHolder.transform.localScale, reachTime);
+            heldObject.transform.DORotate(currenHolderRot, reachTime);
+            StartCoroutine(HolderDestroyRetarderCoroutine());
         }
         else
         {
-            // heldObject.transform.DOMove(_heldFirstPos, 0.5f);
             if (Input.mousePosition.y < 600)
                 heldObject.transform.position = _heldPos;
             else
@@ -161,7 +173,6 @@ public class DragAndDropManager : MonoBehaviour
         if (ps.selectedGo.transform.childCount == 0) IsChildNull = true;
         dragBegin = false;
         heldObject = null;
-        StartCoroutine(HolderDestroyRetarderCoroutine());
     }
 
     private void HolderVisualizer()
@@ -193,10 +204,6 @@ public class DragAndDropManager : MonoBehaviour
         placeHolder.Remove(currentHolder);
         Destroy(currentHolder);
         currentHolder = null;
-    }
-
-    private void CheckHolderScale()
-    {
-
+        rightPos = false;
     }
 }
