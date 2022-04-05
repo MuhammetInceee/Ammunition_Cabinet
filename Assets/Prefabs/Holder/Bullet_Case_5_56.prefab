@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6569094438779162146}
   - component: {fileID: 7819875144257634695}
   - component: {fileID: 5431675723384550733}
+  - component: {fileID: 5505723608239960298}
   m_Layer: 8
   m_Name: Bullet_Case_5_56
   m_TagString: Bullet
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5792135149514478744}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: -0.902, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5505723608239960298
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5792135149514478744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3456444, y: 0.4953854, z: 0.80733985}
+  m_Center: {x: 0.015695779, y: -0.0005257683, z: 0.02127713}

@@ -171,7 +171,7 @@ public class DragAndDropManager : MonoBehaviour
             .Where(b => !b.activeInHierarchy)
             //.OrderBy(c => c.name)
             //.FirstOrDefault();
-            .LastOrDefault();
+            .FirstOrDefault();
 
         if (currentHolder is null) return;
 
