@@ -6,15 +6,24 @@ namespace MuhammetInce.HelperUtils
 {
     public static class HelperUtils
     {
-        public static async void DefaultLayerAsync(GameObject obj, int milliseconds)
+        public static async void LayerChangerDefaultAsync(GameObject obj, int milliseconds)
         {
             await Task.Delay(milliseconds);
             obj.layer = 0;
         }
 
-        public static async void IgnoreRayLayerAsync(GameObject obj, int milliseconds)
+        public static async void LayerChangerIgnoreRaycastAsync(GameObject obj, int milliseconds)
         {
             await Task.Delay(milliseconds);
+            obj.layer = 2;
+        }
+
+        public static void LayerChangerDefault(GameObject obj)
+        {
+            obj.layer = 0;
+        }
+        public static void LayerChangerIgnoreRaycast(GameObject obj)
+        {
             obj.layer = 2;
         }
 
