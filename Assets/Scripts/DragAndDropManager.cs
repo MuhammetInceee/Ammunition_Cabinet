@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using System.Linq;
+using System.Threading.Tasks;
+using MuhammetInce.HelperUtils;
+using TMPro;
 
 public class DragAndDropManager : MonoBehaviour
 {
@@ -88,11 +91,8 @@ public class DragAndDropManager : MonoBehaviour
         if (Touch.phase == TouchPhase.Moved)
         {
             _yValue = Input.mousePosition.y;
-            if (_yValue <= movableDistance && !isMoving)
-            {
-                //rightPos = false;
-                return;
-            }
+            if (_yValue <= movableDistance && !isMoving) return;
+            
             On_Drag();
             isMoving = true;
         }
@@ -111,7 +111,9 @@ public class DragAndDropManager : MonoBehaviour
         if (hit.collider.gameObject != ps.selectedGo) return;
 
         dragBegin = true;
+        if(ps.selectedGo.transform.childCount == 0) return;
         heldObject = ps.selectedGo.transform.GetChild(ps.selectedGo.transform.childCount - 1).gameObject;
+        HelperUtils.LayerChangerIgnoreRaycast(ps.selectedGo);
         _heldPos = heldObject.transform.position;
         _heldFirstPos = new Vector3(_heldPos.x, _heldPos.y, _heldPos.z);
         HolderVisualizer();
@@ -137,7 +139,7 @@ public class DragAndDropManager : MonoBehaviour
             rightPos = true;
         else
             rightPos = false;
-
+        
     }
 
     private void On_Drop()
@@ -146,7 +148,8 @@ public class DragAndDropManager : MonoBehaviour
 
         if (!dragBegin) return;
 
-        if (hit.collider.CompareTag(heldObject.tag))
+        //if (hit.collider.CompareTag(heldObject.tag))
+        if (rightPos)
         {
             var rotation = currentHolder.transform.rotation.eulerAngles;
             Vector3 currenHolderRot = new Vector3(rotation.x,
@@ -158,16 +161,18 @@ public class DragAndDropManager : MonoBehaviour
         }
         else
         {
-            if (Input.mousePosition.y < 600)
-                heldObject.transform.position = _heldPos;
-            else
-                heldObject.transform.DOMove(_heldFirstPos, 0.5f);
+            if(heldObject == null) return;
+            
+            if (Input.mousePosition.y < 600)  heldObject.transform.position = _heldPos;
+            
+            else heldObject.transform.DOMove(_heldFirstPos, 0.5f);
             
             heldObject.transform.SetParent(ps.selectedGo.transform);
             if(currentHolder == null) return;
-            currentHolder.SetActive(false);
-            //currentHolder = null;
             
+            currentHolder.SetActive(false);
+            currentHolder = null;
+            HelperUtils.LayerChangerDefault(ps.selectedGo);
         }
 
         if (ps.selectedGo.transform.childCount == 0) IsChildNull = true;
@@ -179,10 +184,7 @@ public class DragAndDropManager : MonoBehaviour
     {
         currentHolder = placeHolder
             .Where(a => a.layer == TargetLayer)
-            .Where(b => !b.activeInHierarchy)
-            //.OrderBy(c => c.name)
-            //.FirstOrDefault();
-            .FirstOrDefault();
+            .FirstOrDefault(b => !b.activeInHierarchy);
 
         if (currentHolder is null) return;
 
@@ -205,5 +207,6 @@ public class DragAndDropManager : MonoBehaviour
         Destroy(currentHolder);
         currentHolder = null;
         rightPos = false;
+        HelperUtils.LayerChangerDefault(ps.selectedGo);
     }
 }
