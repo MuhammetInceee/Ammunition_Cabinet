@@ -75,13 +75,13 @@ public class PanelAndSelectManager : MonoBehaviour
 
         if (Touch.phase == TouchPhase.Moved)
         {
-            HelperUtils.IgnoreRayLayerAsync(gameObject, 150);
+            HelperUtils.LayerChangerIgnoreRaycastAsync(gameObject, 150);
             Pos = new Vector3(Pos.x + Touch.deltaPosition.x * (horizontalSpeed * Time.deltaTime), Pos.y, Pos.z);
         }
 
         if (Touch.phase == TouchPhase.Ended)
         {
-            HelperUtils.DefaultLayerAsync(gameObject, 150);
+            HelperUtils.LayerChangerDefaultAsync(gameObject, 150);
         }
     }
 
