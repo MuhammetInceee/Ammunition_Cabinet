@@ -324,9 +324,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightDoor: {fileID: 6620738387470451117}
   leftDoor: {fileID: 34830782250141231}
-  rightDoorAngle: {x: 0, y: 0, z: 0}
-  leftDoorAngle: {x: 0, y: 0, z: 0}
-  doorCloseDuration: 2
+  rightDoorCloseAngle: {x: 0, y: 180, z: 0}
+  leftDoorCloseAngle: {x: 0, y: -180, z: 0}
+  rightDoorOpenAngle: {x: 0, y: 90, z: 0}
+  leftDoorOpenAngle: {x: 0, y: -90, z: 0}
+  doorAnimDuration: 2
 --- !u!1 &133727766
 GameObject:
   m_ObjectHideFlags: 0
@@ -3838,7 +3840,7 @@ GameObject:
   - component: {fileID: 5387593250306575400}
   - component: {fileID: 5349044317970393104}
   m_Layer: 0
-  m_Name: polySurface42
+  m_Name: Left_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4073,7 +4075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543450652153753733}
   m_Layer: 0
-  m_Name: Door_01
+  m_Name: Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4804,7 +4806,7 @@ GameObject:
   - component: {fileID: 6027731318900433209}
   - component: {fileID: 1570034429270734011}
   m_Layer: 0
-  m_Name: polySurface41
+  m_Name: Right_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4857,13 +4859,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6620738387470451117}
-  m_LocalRotation: {x: -0, y: -0.75383323, z: -0, w: 0.65706575}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0005363464, y: 0, z: -0.11587972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 543450652153753733}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -97.847, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &7957915968340418535
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5048,13 +5050,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34830782250141231}
-  m_LocalRotation: {x: -0, y: 0.6972661, z: -0, w: 0.71681243}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.1899753, y: 0, z: -0.11587972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 543450652153753733}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 88.416, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8677319234100745257
 Transform:
   m_ObjectHideFlags: 0
