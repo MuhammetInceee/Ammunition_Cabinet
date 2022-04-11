@@ -230,10 +230,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1836450230}
     m_Modifications:
-    - target: {fileID: 3106694236252296170, guid: 3ae4ed911df8b484286d2b005dc23637, type: 3}
-      propertyPath: m_Name
-      value: PraiseHolder
-      objectReference: {fileID: 0}
     - target: {fileID: 3174907667219831535, guid: 3ae4ed911df8b484286d2b005dc23637, type: 3}
       propertyPath: m_Name
       value: GameplayCanvas
@@ -3908,10 +3904,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1836450230}
     m_Modifications:
-    - target: {fileID: 5768720764974531192, guid: 31017199ee005134f82a8aa3c6059818, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8286754088334498807, guid: 31017199ee005134f82a8aa3c6059818, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4005,33 +3997,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8628666773544630872, guid: 31017199ee005134f82a8aa3c6059818, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8628666773544630872, guid: 31017199ee005134f82a8aa3c6059818, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8628666773544630872, guid: 31017199ee005134f82a8aa3c6059818, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2051821022}
-    - target: {fileID: 8628666773544630872, guid: 31017199ee005134f82a8aa3c6059818, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8628666773544630872, guid: 31017199ee005134f82a8aa3c6059818, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextLevelButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 8628666773544630872, guid: 31017199ee005134f82a8aa3c6059818, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIButtonsManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8628666773544630872, guid: 31017199ee005134f82a8aa3c6059818, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31017199ee005134f82a8aa3c6059818, type: 3}
 --- !u!224 &728126062985405400 stripped
