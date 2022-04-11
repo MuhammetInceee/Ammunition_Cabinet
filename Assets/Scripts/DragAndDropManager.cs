@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -54,7 +55,6 @@ public class DragAndDropManager : MonoBehaviour
     {
         AwakeInit();
     }
-
     private void Update()
     {
         UpdateInit();
@@ -64,6 +64,7 @@ public class DragAndDropManager : MonoBehaviour
     {
         ps = FindObjectOfType<PanelAndSelectManager>();
         if (mainCamera == null) FindObjectOfType<Camera>();
+        
     }
 
     private void UpdateInit()
@@ -208,5 +209,13 @@ public class DragAndDropManager : MonoBehaviour
         currentHolder = null;
         rightPos = false;
         HelperUtils.LayerChangerDefault(ps.selectedGo);
+        GameEndedCheck();
+    }
+
+    private void GameEndedCheck()
+    {
+        if(placeHolder.Count != 0) return;
+        
+        GameEndedManager.Instance.DoorCloser();
     }
 }
