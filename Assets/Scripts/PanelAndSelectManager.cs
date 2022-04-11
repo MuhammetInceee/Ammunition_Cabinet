@@ -53,6 +53,7 @@ public class PanelAndSelectManager : MonoBehaviour
     private void AwakeInit()
     {
         if (mainCamera == null) FindObjectOfType<Camera>();
+        GameEndedManager.Instance.DoorOpener();
     }
 
     private void UpdateInit()
