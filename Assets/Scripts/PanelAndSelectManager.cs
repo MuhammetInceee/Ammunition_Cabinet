@@ -155,4 +155,14 @@ public class PanelAndSelectManager : MonoBehaviour
             _ => targetLayer
         };
     }
+
+    public void DeSelectEnded()
+    {
+        HelperUtils.CaseSmaller(selectedGo, defaultScaleFactor, selectedGoDuration);
+        HelperUtils.DefaultCaseRotater(selectedGo, selectedGoDuration);
+        selectedGo = null;
+        gOSelected = false;
+        canSelect = true;
+        targetLayer = 0;
+    }
 }
