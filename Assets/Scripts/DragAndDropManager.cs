@@ -216,6 +216,7 @@ public class DragAndDropManager : MonoBehaviour
     {
         if(placeHolder.Count != 0) return;
         
-        GameEndedManager.Instance.DoorCloser();
+        GameEndedManager.Instance.GameEnded();
+        ps.DeSelectEnded();
     }
 }
