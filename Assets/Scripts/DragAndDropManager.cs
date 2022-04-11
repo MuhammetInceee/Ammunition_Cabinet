@@ -210,6 +210,7 @@ public class DragAndDropManager : MonoBehaviour
         rightPos = false;
         HelperUtils.LayerChangerDefault(ps.selectedGo);
         GameEndedCheck();
+        UIManager.Instance.PraiseVisualizer();
     }
 
     private void GameEndedCheck()

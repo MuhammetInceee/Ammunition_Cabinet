@@ -48,6 +48,7 @@ namespace MuhammetInce.HelperUtils
         {
             var rotateState = new Vector3(0, 90, 0);
             obj.transform.DORotate(rotateState, secondDuration);
+            
         }
     }
 }
