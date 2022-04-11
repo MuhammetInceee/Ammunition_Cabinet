@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class GameEndedManager : Singleton<GameEndedManager>
 {
+    [Header("Canvases"), Space] 
+    [SerializeField] private GameObject gameEndedCanvas;
+    
     [Header("Doors"), Space]
     [SerializeField] private GameObject rightDoor;
     [SerializeField] private GameObject leftDoor;
@@ -25,9 +28,23 @@ public class GameEndedManager : Singleton<GameEndedManager>
         rightDoor.transform.DORotate(rightDoorOpenAngle, doorAnimDuration);
         leftDoor.transform.DORotate(leftDoorOpenAngle, doorAnimDuration);
     }
-    public void DoorCloser()
+    
+    public void GameEnded()
+    {
+        DoorCloser();
+        StartCoroutine(CanvasVisualizerCoroutine());
+    }
+    private void DoorCloser()
     {
         rightDoor.transform.DORotate(rightDoorCloseAngle, doorAnimDuration);
         leftDoor.transform.DORotate(leftDoorCloseAngle, doorAnimDuration);
+    }
+
+    private IEnumerator CanvasVisualizerCoroutine()
+    {
+        var waitForSecond = new WaitForSeconds(doorAnimDuration);
+        yield return waitForSecond;
+        
+        gameEndedCanvas.SetActive(true);
     }
 }
