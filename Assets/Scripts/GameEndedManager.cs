@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using MuhammetInce.DesignPattern.Singleton;
 using UnityEngine;
 
-public class GameEndedManager : Singleton<GameEndedManager>
+public class GameEndedManager : MonoBehaviour
 {
     [Header("Canvases"), Space] 
     [SerializeField] private GameObject gameEndedCanvas;
@@ -22,6 +23,12 @@ public class GameEndedManager : Singleton<GameEndedManager>
 
     [Header("Durations"), Space] 
     [SerializeField] private float doorAnimDuration;
+
+    private void Start()
+    {
+        rightDoor = GameObject.Find("Right_Door");
+        leftDoor = GameObject.Find("Left_Door");
+    }
 
     public void DoorOpener()
     {

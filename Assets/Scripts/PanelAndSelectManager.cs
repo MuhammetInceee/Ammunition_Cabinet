@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using MuhammetInce.HelperUtils;
 using UnityEngine.Serialization;
@@ -6,6 +7,9 @@ public class PanelAndSelectManager : MonoBehaviour
 {
     private RaycastHit hit;
 
+    [Header("Scripts")] 
+    [SerializeField] private GameEndedManager gameEndedManager;
+    
     [Header("Layers"), Space] 
     [SerializeField] private int defaultLayer = 0;
 
@@ -53,7 +57,11 @@ public class PanelAndSelectManager : MonoBehaviour
     private void AwakeInit()
     {
         if (mainCamera == null) FindObjectOfType<Camera>();
-        GameEndedManager.Instance.DoorOpener();
+    }
+
+    private void Start()
+    {
+        gameEndedManager.DoorOpener();
     }
 
     private void UpdateInit()

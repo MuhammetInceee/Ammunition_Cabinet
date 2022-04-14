@@ -475,7 +475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be65cc07ae74901ba0b13cbd4e6e40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps: {fileID: 0}
+  gameEndedManager: {fileID: 340835687}
+  ps: {fileID: 306719820}
   placeHolder:
   - {fileID: 17337045}
   - {fileID: 544483606}
@@ -840,6 +841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc1c9fc596fde9479b13978af7c8a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameEndedManager: {fileID: 340835687}
   defaultLayer: 0
   targetLayer: 0
   bigScaleFactor: 2
@@ -870,6 +872,17 @@ Transform:
   m_Father: {fileID: 1401189378}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &340835687 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1338597741247263154, guid: 4b1cf2797341a3544a8ad13c6cf3d243, type: 3}
+  m_PrefabInstance: {fileID: 1338597741357890322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277005720aea20544b617b6e433c211f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &372730828
 GameObject:
   m_ObjectHideFlags: 0

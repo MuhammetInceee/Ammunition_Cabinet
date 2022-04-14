@@ -13,7 +13,11 @@ public class DragAndDropManager : MonoBehaviour
     private RaycastHit hit;
     private Vector3 _heldFirstPos;
     private Vector3 _heldPos;
+
+    [Header("Scripts")] 
+    [SerializeField] private GameEndedManager gameEndedManager;
     [SerializeField] private PanelAndSelectManager ps;
+    
     
     [Space] [Header("PlaceHolder"), Space]
     public List<GameObject> placeHolder = null;
@@ -64,7 +68,7 @@ public class DragAndDropManager : MonoBehaviour
     {
         ps = FindObjectOfType<PanelAndSelectManager>();
         if (mainCamera == null) FindObjectOfType<Camera>();
-        
+        IsChildNull = false;
     }
 
     private void UpdateInit()
@@ -174,6 +178,7 @@ public class DragAndDropManager : MonoBehaviour
             currentHolder.SetActive(false);
             currentHolder = null;
             HelperUtils.LayerChangerDefault(ps.selectedGo);
+            UIManager.Instance.CrossVisualizer();
         }
 
         if (ps.selectedGo.transform.childCount == 0) IsChildNull = true;
@@ -217,7 +222,7 @@ public class DragAndDropManager : MonoBehaviour
     {
         if(placeHolder.Count != 0) return;
         
-        GameEndedManager.Instance.GameEnded();
+        gameEndedManager.GameEnded();
         ps.DeSelectEnded();
     }
 }

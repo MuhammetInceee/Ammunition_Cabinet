@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using DG.Tweening;
 using MuhammetInce.DesignPattern.Singleton;
 using UnityEngine;
@@ -10,13 +11,28 @@ using Random = UnityEngine.Random;
 
 public class UIManager : Singleton<UIManager>
 {
+    [Header("Lists")]
     [SerializeField] private List<Image> praiseWords = new List<Image>();
 
+    [Header("Objects"), Space]
     [SerializeField] private GameObject praiseHolder;
+    [SerializeField] private Image crossSprite;
     
+    [Header("Vectors"), Space]
     [SerializeField] private Vector3 bigPraiseWordScale;
     [SerializeField] private Vector3 smallPraiseWordScale;
+    
+    [Header("Floats"), Space]
     [SerializeField] private float praiseBiggerDuration;
+
+    [Header("Integers"), Space]
+    [SerializeField] private int counterFirstValue = 2;
+    public int praiseCounter;
+
+    private void Start()
+    {
+        praiseCounter = counterFirstValue;
+    }
 
     public void NextLevelButton()
     {
@@ -33,13 +49,19 @@ public class UIManager : Singleton<UIManager>
 
     public void PraiseVisualizer()
     {
-        var randomPraise = Random.Range(0, praiseWords.Count);
-        var selectedPraiseObject = praiseWords[randomPraise].gameObject;
-        selectedPraiseObject.SetActive(true);
-        praiseWords[randomPraise].rectTransform.position = praiseHolder.transform.position;
-        selectedPraiseObject.transform.DOScale(bigPraiseWordScale, praiseBiggerDuration).OnComplete(() =>
-            selectedPraiseObject.transform.DOScale(smallPraiseWordScale, praiseBiggerDuration));
-        StartCoroutine(PraiseDeactivaterCoroutine(selectedPraiseObject));
+        if(praiseCounter == 0)
+        {
+            var randomPraise = Random.Range(0, praiseWords.Count);
+            var selectedPraiseObject = praiseWords[randomPraise].gameObject;
+            selectedPraiseObject.SetActive(true);
+            praiseWords[randomPraise].rectTransform.position = praiseHolder.transform.position;
+            selectedPraiseObject.transform.DOScale(bigPraiseWordScale, praiseBiggerDuration).OnComplete(() =>
+                selectedPraiseObject.transform.DOScale(smallPraiseWordScale, praiseBiggerDuration));
+            StartCoroutine(PraiseDeactivaterCoroutine(selectedPraiseObject));
+            praiseCounter = counterFirstValue;
+        }
+        
+        else praiseCounter--;
     }
 
     private IEnumerator PraiseDeactivaterCoroutine(GameObject obj)
@@ -48,5 +70,13 @@ public class UIManager : Singleton<UIManager>
         yield return waitForSecond;
         
         obj.SetActive(false);
+    }
+
+    public void CrossVisualizer()
+    {
+        crossSprite.gameObject.SetActive(true);
+        crossSprite.transform.DOScale(bigPraiseWordScale, praiseBiggerDuration).OnComplete(() =>
+            crossSprite.transform.DOScale(smallPraiseWordScale, praiseBiggerDuration));
+        StartCoroutine(PraiseDeactivaterCoroutine(crossSprite.gameObject));
     }
 }
