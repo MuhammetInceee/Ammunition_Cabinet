@@ -14,34 +14,32 @@ public class DragAndDropManager : MonoBehaviour
     private Vector3 _heldFirstPos;
     private Vector3 _heldPos;
 
-    [Header("Scripts")] 
-    [SerializeField] private GameEndedManager gameEndedManager;
+    [Header("Scripts")] [SerializeField] private GameEndedManager gameEndedManager;
     [SerializeField] private PanelAndSelectManager ps;
-    
-    
-    [Space] [Header("PlaceHolder"), Space]
-    public List<GameObject> placeHolder = null;
-    
-    [Header("Floats"), Space]
-    private float _yValue;
+
+
+    [Space] [Header("PlaceHolder"), Space] public List<GameObject> placeHolder = null;
+
+    [Header("Floats"), Space] private float _yValue;
     [SerializeField] private float zDepth = 5f;
     [SerializeField] private float movableDistance = 510;
     [SerializeField] private float reachTime = 1f;
 
-    [Header("Objects"), Space]
-    [SerializeField] private Camera mainCamera;
+    [Header("Objects"), Space] [SerializeField]
+    private Camera mainCamera;
+
     [SerializeField] private GameObject heldObject;
     [SerializeField] private GameObject currentHolder;
 
-    [Header("Booleans"), Space]
-    public static bool IsChildNull;
+    [Header("Booleans"), Space] public static bool IsChildNull;
     [SerializeField] private bool isChildNullIns;
     [SerializeField] private bool dragBegin;
     [SerializeField] private bool isMoving;
     [SerializeField] private bool rightPos;
 
-    [Header("Materials"), Space]
-    [SerializeField] private Material targetHoloMaterial;
+    [Header("Materials"), Space] [SerializeField]
+    private Material targetHoloMaterial;
+
     [SerializeField] private Material targetGreenMaterial;
 
     // Properties
@@ -49,6 +47,7 @@ public class DragAndDropManager : MonoBehaviour
     private Ray Ray => mainCamera.ScreenPointToRay(Input.mousePosition);
     private float InputX => Input.GetTouch(0).position.x;
     private float InputY => Input.GetTouch(0).position.y;
+
     private int TargetLayer
     {
         get => ps.targetLayer;
@@ -59,6 +58,7 @@ public class DragAndDropManager : MonoBehaviour
     {
         AwakeInit();
     }
+
     private void Update()
     {
         UpdateInit();
@@ -97,7 +97,7 @@ public class DragAndDropManager : MonoBehaviour
         {
             _yValue = Input.mousePosition.y;
             if (_yValue <= movableDistance && !isMoving) return;
-            
+
             On_Drag();
             isMoving = true;
         }
@@ -116,7 +116,7 @@ public class DragAndDropManager : MonoBehaviour
         if (hit.collider.gameObject != ps.selectedGo) return;
 
         dragBegin = true;
-        if(ps.selectedGo.transform.childCount == 0) return;
+        if (ps.selectedGo.transform.childCount == 0) return;
         heldObject = ps.selectedGo.transform.GetChild(ps.selectedGo.transform.childCount - 1).gameObject;
         HelperUtils.LayerChangerIgnoreRaycast(ps.selectedGo);
         _heldPos = heldObject.transform.position;
@@ -137,14 +137,13 @@ public class DragAndDropManager : MonoBehaviour
         heldObject.transform.localPosition = mainCamera.ScreenToWorldPoint(new Vector3(InputX, InputY, zDepth));
 
         if (!Physics.Raycast(Ray, out hit)) return;
-        
+
         //rightPos = hit.collider.gameObject == currentHolder;
 
         if (hit.collider.gameObject == currentHolder)
             rightPos = true;
         else
             rightPos = false;
-        
     }
 
     private void On_Drop()
@@ -159,22 +158,23 @@ public class DragAndDropManager : MonoBehaviour
             var rotation = currentHolder.transform.rotation.eulerAngles;
             Vector3 currenHolderRot = new Vector3(rotation.x,
                 rotation.y, rotation.z);
-            
+
             heldObject.transform.DOMove(hit.transform.position, reachTime);
             heldObject.transform.DORotate(currenHolderRot, reachTime);
             StartCoroutine(HolderDestroyRetarderCoroutine());
+            if (ps.tutorialHand.activeInHierarchy) ps.tutorialHand.SetActive(false);
         }
         else
         {
-            if(heldObject == null) return;
-            
-            if (Input.mousePosition.y < 600)  heldObject.transform.position = _heldPos;
-            
+            if (heldObject == null) return;
+
+            if (Input.mousePosition.y < 600) heldObject.transform.position = _heldPos;
+
             else heldObject.transform.DOMove(_heldFirstPos, 0.5f);
-            
+
             heldObject.transform.SetParent(ps.selectedGo.transform);
-            if(currentHolder == null) return;
-            
+            if (currentHolder == null) return;
+
             currentHolder.SetActive(false);
             currentHolder = null;
             HelperUtils.LayerChangerDefault(ps.selectedGo);
@@ -200,7 +200,7 @@ public class DragAndDropManager : MonoBehaviour
     private void RightPlaceChecker()
     {
         if (currentHolder == null) return;
-        
+
         currentHolder.GetComponent<MeshRenderer>().material = rightPos ? targetGreenMaterial : targetHoloMaterial;
     }
 
@@ -208,7 +208,7 @@ public class DragAndDropManager : MonoBehaviour
     {
         var waitForSecond = new WaitForSeconds(reachTime);
         yield return waitForSecond;
-        
+
         placeHolder.Remove(currentHolder);
         Destroy(currentHolder);
         currentHolder = null;
@@ -220,8 +220,8 @@ public class DragAndDropManager : MonoBehaviour
 
     private void GameEndedCheck()
     {
-        if(placeHolder.Count != 0) return;
-        
+        if (placeHolder.Count != 0) return;
+
         gameEndedManager.GameEnded();
         ps.DeSelectEnded();
     }

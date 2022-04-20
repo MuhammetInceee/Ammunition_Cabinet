@@ -16,17 +16,12 @@ public class sdk : MonoBehaviour
         
     }
 
-    void Start()
+    private void Start()
     {
         GameAnalytics.Initialize();
 
         TinySauce.OnGameStarted();
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        TinySauce.OnGameFinished(true, 100);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
 using DG.Tweening;
+using GameAnalyticsSDK.Setup;
 using MuhammetInce.DesignPattern.Singleton;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,7 +18,7 @@ public class UIManager : Singleton<UIManager>
     [Header("Objects"), Space]
     [SerializeField] private GameObject praiseHolder;
     [SerializeField] private Image crossSprite;
-    
+
     [Header("Vectors"), Space]
     [SerializeField] private Vector3 bigPraiseWordScale;
     [SerializeField] private Vector3 smallPraiseWordScale;
@@ -31,9 +32,14 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
-        praiseCounter = counterFirstValue;
+        StartInit();
     }
 
+    private void StartInit()
+    {
+        praiseCounter = counterFirstValue;
+    }
+    
     public void NextLevelButton()
     {
         if (SceneManager.GetActiveScene().buildIndex == 2)

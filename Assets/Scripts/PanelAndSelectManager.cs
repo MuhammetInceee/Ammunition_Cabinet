@@ -1,4 +1,5 @@
 using System;
+using GameAnalyticsSDK.Setup;
 using UnityEngine;
 using MuhammetInce.HelperUtils;
 using UnityEngine.Serialization;
@@ -18,7 +19,6 @@ public class PanelAndSelectManager : MonoBehaviour
 
     [Header("Floats"), Space] 
     [SerializeField] private float bigScaleFactor = 2.5f;
-    
     [SerializeField] private float selectedGoDuration = 0.5f;
     [SerializeField] private float defaultScaleFactor = 1.3f;
     [SerializeField] private float horizontalSpeed = 0.2f;
@@ -28,6 +28,10 @@ public class PanelAndSelectManager : MonoBehaviour
     [Header("Objects"), Space] 
     public GameObject selectedGo;
     [SerializeField] private Camera mainCamera;
+    
+    [Header("Tutorial"), Space]
+    [SerializeField] private Animator handAnim;
+    public GameObject tutorialHand;
 
     [Header("Booleans"), Space] 
     public bool gOSelected;
@@ -125,6 +129,7 @@ public class PanelAndSelectManager : MonoBehaviour
         if (gOSelected) return;
         if (hit.transform.parent.gameObject.name != "CaseContainer") return;
 
+        handAnim.SetBool("drag", true);
         selectedGo = hit.collider.gameObject;
         HelperUtils.CaseBigger(selectedGo, bigScaleFactor, selectedGoDuration);
         HelperUtils.CaseRotater(selectedGo,selectedCaseRotateAnge, selectedGoDuration);
